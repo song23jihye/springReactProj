@@ -68,7 +68,8 @@ public class BoardController {
     public HashMap<String,Object> update(@PathVariable int id, @RequestBody BoardDTO boardDTO){
         HashMap<String,Object> resultMap = new HashMap<>();
         System.out.println("수정할 boardDTO: "+boardDTO.toString());
-
+        BOARD_SERVICE.update(boardDTO);
+        resultMap.put("destId",boardDTO.getId());
         return resultMap;
     }
 }

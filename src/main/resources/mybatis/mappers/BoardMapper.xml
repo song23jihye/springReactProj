@@ -23,5 +23,12 @@
         INSERT INTO contents(title, text, writer_id, written_time, modified_time)
         VALUES(#{title}, #{text},#{writerId},NOW(),NOW())
     </insert>
+    <update id="update" parameterType="BoardDTO">
+        UPDATA contents
+        SET title={#title}
+        text = #{text}
+        modified_time = NOW()
+        WHERE id=#{id}
+    </update>
 
 </mapper>

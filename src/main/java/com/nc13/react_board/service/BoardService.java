@@ -39,5 +39,8 @@ public class BoardService {
     public void insert(BoardDTO boardDTO){
         SESSION.insert(NAMESPACE+".insert",boardDTO);
     }
+    public void update(BoardDTO boardDTO){
+        SESSION.update(NAMESPACE+".update",boardDTO);
+    }
 
 }
