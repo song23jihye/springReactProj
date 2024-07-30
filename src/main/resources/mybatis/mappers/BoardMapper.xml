@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.BoardMapper">
+    <select id="selectOne" parameterType="int" resultType="BoardDTO">
+        SELECT * FROM contents
+        INNER JOIN boarduser
+        ON contents.writer_id = boarduser.id
+        WHERE contents.id=#{id}
+    </select>
+    <select id="selectMaxPage" resultType="int">
+        SELECT COUNT(*) FROM contents
+    </select>
+    <select id="selectList" parameterType="hashmap" resultType="BoardDTO">
+        SELECT * FROM contents
+        INNER JOIN boarduser
+        On contents.writer_id = boarduser.id
+        ORDER BY contents.id DESC
+        LIMIT ${startRow}, ${size}
+    </select>
+    <insert id="insert" parameterType="BoardDTO" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO contents(title, text, writer_id, written_time, modified_time)
+        VALUES(#{title}, #{text},#{writerId},NOW(),NOW())
+    </insert>
+
+</mapper>
